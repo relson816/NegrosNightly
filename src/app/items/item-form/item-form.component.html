@@ -1,0 +1,33 @@
+<h3>New Event Form</h3>
+ <form>
+  <input type="radio" name="category" value="Concert" checked> Concert<br>
+  <input type="radio" name="category" value="Gig"> Gig<br>
+  <input type="radio" name="category" value="Show"> Show
+</form> 
+<label class="label">Name: </label>
+
+<input placeholder="Event Name" class="input"
+[(ngModel)]="title" name ="title"
+required minlength="2" maxlength="23" autofocus>
+<!--#title='ngModel' autofocus>-->
+
+<div *ngIf="title.dirty">
+  <span *ngIf='title.errors; then errors else valid'>template renders here...</span>
+</div>
+<label class="label">Description: </label>
+<input type="text" [(ngModel)]="description" name="description" placeholder="Description">
+<label class="label">Location: </label>
+<input type="text" [(ngModel)]="location" name="location" placeholder="Location">
+<label class="label">Date: </label>
+<input type="date" [(ngModel)]="date" name = "date" data-date-inline-picker="true" />
+<label class="label">Time: 
+<input placeholder = "Time" [(ngModel)]="time" name ="time" class= "input" type="time" />
+<button class="button is-primary" (click)='addEvent()'>Create</button>
+
+<ng-template #valid>
+  <p class="help is-success">looks good!</p>
+</ng-template>
+
+<ng-template #errors>
+  <p class="help is-danger">form contains errors!</p>
+</ng-template>
